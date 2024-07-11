@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Admin",
+        "permissions": [
+            "view user",
+            "create user",
+            "edit user",
+            "update user",
+            "delete user",
+
+            "view employer",
+            "create employer",
+            "edit employer",
+            "update employer",
+            "delete employer",
+
+            "view job",
+            "create job",
+            "edit job",
+            "update job",
+            "delete job",
+
+            "view job seeker",
+            "create job seeker",
+            "edit job seeker",
+            "update job seeker",
+            "delete job seeker",
+
+            "view job application",
+            "create job application",
+            "edit job application",
+            "update job application",
+            "delete job application"
+        ]
+    },
+    {
+        "name": "Employer",
+        "permissions": [
+            "edit employer",
+            "update employer",
+
+            "view job",
+            "create job",
+            "edit job",
+            "update job",
+            "delete job",
+
+            "view job seeker",
+
+            "view job application",
+            "edit job application",
+            "update job application"
+        ]
+    },
+    {
+        "name": "Job Seeker",
+        "permissions": [
+            "view employer",
+
+            "view job",
+
+            "view job seeker",
+            "edit job seeker",
+            "update job seeker",
+            "delete job seeker",
+
+            "view job application",
+            "create job application",
+            "edit job application",
+            "update job application",
+            "delete job application"
+        ]
+    }
+]
