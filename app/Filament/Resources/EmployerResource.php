@@ -18,7 +18,7 @@ class EmployerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
-    protected static ?string $navigationGroup = 'Employer Management';
+    protected static ?string $navigationGroup = 'Management';
 
     public static function form(Form $form): Form
     {

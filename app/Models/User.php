@@ -14,7 +14,10 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * User
  *
- * @property mixed $id
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property Employer|null $employer
  */
 class User extends Authenticatable implements FilamentUser
 {
