@@ -7,7 +7,7 @@ use Faker\Provider\en_PH\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EmployerAddress>
+ * @extends Factory<EmployerAddress>
  */
 class EmployerAddressFactory extends Factory
 {

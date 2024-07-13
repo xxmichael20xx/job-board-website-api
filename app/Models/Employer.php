@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Employer
  *
  * @property mixed|null $id
+ * @property int $userId
+ * @property string $company
+ * @property string $email
+ * @property string $logo
+ * @property string $description
  * @property ?User $user
  * @property ?EmployerAddress $address
  */

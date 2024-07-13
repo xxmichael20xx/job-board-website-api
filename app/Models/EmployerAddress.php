@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * EmployerAddress
+ *
+ * @property int $employer_id
+ * @property string $street_1
+ * @property string $string_2
+ * @property string $city
+ * @property string $state
+ * @property string $zip
+ * @property string $country
+ * @property Employer $employer
+ */
 class EmployerAddress extends Model
 {
     use HasFactory;
