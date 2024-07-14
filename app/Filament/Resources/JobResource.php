@@ -20,7 +20,7 @@ class JobResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
-    protected static ?string $navigationGroup = 'Management';
+    protected static ?string $navigationGroup = 'Workforce Management';
 
     public static function form(Form $form): Form
     {
@@ -38,6 +38,10 @@ class JobResource extends Resource
                                     ->options(fn (): array => Employer::withoutTrashed()->pluck('company', 'id')->toArray())
                                     ->searchable()
                                     ->columnSpan(1),
+                                Forms\Components\Select::make('status')
+                                    ->options(fn (): array => JobStatusEnum::options())
+                                    ->hidden(fn (?Job $job): bool => !$job->id)
+                                    ->default(JobStatusEnum::PENDING->value)
                             ]),
                         Forms\Components\TextInput::make('title')
                             ->required()
@@ -58,7 +62,13 @@ class JobResource extends Resource
                             ->required()
                             ->columnSpan(2),
                         Forms\Components\Toggle::make('requires_resume')
-                            ->default(false),
+                            ->default(false)
+                            ->columnSpan(2),
+                        Forms\Components\Select::make('skills')
+                            ->multiple()
+                            ->required()
+                            ->searchable()
+                            ->options(fn (): array => getPicklistItemsAsOptions('job-skills'))
                     ])
             ]);
     }

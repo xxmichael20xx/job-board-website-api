@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Picklist;
 use Illuminate\Support\Facades\Log;
 
 if (! function_exists('debugLog')) {
@@ -83,5 +84,23 @@ if (! function_exists('appUrlStorage')) {
         $appUrl = appendSlash(config('app.url'));
 
         return $appUrl . '/storage/' . $path;
+    }
+}
+
+if (! function_exists('getPicklistItemsAsOptions')) {
+    /**
+     * Get picklist items as options via slug
+     *
+     * @param string $slug
+     * @return array
+     */
+    function getPicklistItemsAsOptions(string $slug): array
+    {
+        /** @var Picklist $picklist */
+        $picklist = Picklist::query()
+            ->where('slug', $slug)
+            ->first();
+
+        return $picklist->items()->pluck('name', 'id')->toArray();
     }
 }
