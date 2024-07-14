@@ -6,11 +6,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Job
  *
+ * @property int $id
  * @property int $employer_id
  * @property string $title
  * @property string $description
@@ -57,5 +59,10 @@ class Job extends Model
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
+    }
+
+    public function skills(): BelongsToMany
+    {
+        return $this->belongsToMany(PicklistItem::class, 'job_has_skills', 'job_id', 'picklist_item_id');
     }
 }
