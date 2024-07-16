@@ -20,6 +20,11 @@ class PicklistItem extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'picklist_id',
         'name',
@@ -27,11 +32,21 @@ class PicklistItem extends Model
         'description',
     ];
 
+    /**
+     * Get the picklist associated with the picklist item.
+     *
+     * @return BelongsTo
+     */
     public function picklist(): BelongsTo
     {
         return $this->belongsTo(Picklist::class);
     }
 
+    /**
+     * Get the jobs associated with the picklist item.
+     *
+     * @return BelongsToMany
+     */
     public function jobs(): BelongsToMany
     {
         return $this->belongsToMany(Job::class, 'job_has_skills', 'picklist_item_id', 'job_id');

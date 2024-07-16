@@ -39,6 +39,11 @@ class Job extends Model
         ];
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'employer_id',
         'title',
@@ -50,17 +55,32 @@ class Job extends Model
         'expire_at',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
     protected $casts = [
         'requires_resume' => 'boolean',
         'status' => 'integer',
         'expire_at' => 'datetime',
     ];
 
+    /**
+     * Get the employer associated with the job.
+     *
+     * @return BelongsTo
+     */
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
     }
 
+    /**
+     * Get the skills associated with the job.
+     *
+     * @return BelongsToMany
+     */
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(PicklistItem::class, 'job_has_skills', 'job_id', 'picklist_item_id');

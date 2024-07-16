@@ -17,9 +17,7 @@ class CreateJob extends CreateRecord
         $job = static::getModel()::create($data);
 
         // Attach skills
-        foreach (data_get($data, 'skills', []) as $skill) {
-            $job->skills()->attach($skill);
-        }
+        $job->skills()->sync(data_get($data, 'skills', []));
 
         return $job->refresh();
     }

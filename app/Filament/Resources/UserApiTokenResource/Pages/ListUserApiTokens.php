@@ -4,6 +4,7 @@ namespace App\Filament\Resources\UserApiTokenResource\Pages;
 
 use App\Filament\Resources\UserApiTokenResource;
 use App\Models\User;
+use Carbon\Carbon;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
@@ -25,7 +26,7 @@ class ListUserApiTokens extends ListRecords
                         $user = User::query()->find($id);
 
                         // Create the token
-                        $user->createToken('account-creation');
+                        $user->createToken('account-creation', expiresAt: Carbon::now()->addHour());
                     }
 
                     // Send success notification

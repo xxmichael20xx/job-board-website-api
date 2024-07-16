@@ -17,6 +17,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int $id
  * @property string $name
  * @property string $email
+ * @property string $password
  * @property Employer|null $employer
  */
 class User extends Authenticatable implements FilamentUser
@@ -65,6 +66,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasRole(Role::ADMIN);
     }
 
+    /**
+     * Get the employer associated with the user.
+     *
+     * @return HasOne|null
+     */
     public function employer(): ?HasOne
     {
         return $this->hasOne(Employer::class);

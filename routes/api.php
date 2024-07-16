@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\EmployerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    /** Get current user */
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    /** Employer Routes */
+    Route::prefix('employers')
+        ->name('employers.')
+        ->group(function () {
+            /** List employers */
+            Route::get('list', [EmployerController::class, 'list']);
+
+            /** Get employer */
+            Route::get('get/{id}', [EmployerController::class, 'get']);
+        });
+});
+
+/** Guest Routes */
+Route::middleware('guest')->group(function () {
+    /** Login Route */
+    Route::post('login', [AuthController::class, 'login']);
 });

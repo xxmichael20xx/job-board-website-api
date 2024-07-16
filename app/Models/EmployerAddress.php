@@ -22,6 +22,11 @@ class EmployerAddress extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'employer_id',
         'street_1',
@@ -32,6 +37,11 @@ class EmployerAddress extends Model
         'country'
     ];
 
+    /**
+     * Get the employer associated with the employer address.
+     *
+     * @return BelongsTo
+     */
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
